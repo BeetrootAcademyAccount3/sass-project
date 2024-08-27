@@ -1,0 +1,87 @@
+@use "colors" as *;
+
+@mixin theme($color: white, $bg-color: black) {
+  color: $color;
+  background-color: $bg-color;
+}
+
+%item {
+  width: 300px;
+  height: 300px;
+  border: 1px solid black;
+  background-color: black;
+}
+
+%margin {
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+h1 {
+  color: map-get($colors, secondary);
+}
+
+h2 {
+  color: $primaryColor;
+}
+
+li {
+  color: map-get($colors, primary);
+}
+
+.p1 {
+  @include theme;
+}
+.p2 {
+  @include theme(black, yellow);
+}
+
+.item-1 {
+  @extend %item;
+}
+
+.item-2 {
+  @extend %item;
+  background-color: green;
+}
+
+.item-3 {
+  @extend %item;
+  background-color: yellow;
+  height: 500px;
+}
+
+ul {
+  li {
+    a {
+      color: pink;
+    }
+
+    & .main {
+      color: aqua;
+    }
+
+    & .last {
+      color: blueviolet;
+    }
+  }
+}
+
+@mixin alert($color: white, $bg-color: green) {
+  color: $color;
+  background-color: $bg-color;
+}
+
+.msg {
+  &-success {
+    @include alert;
+  }
+
+  &-warning {
+    @include alert(black, yellow);
+  }
+
+  &-danger {
+    @include alert(white, red);
+  }
+}
